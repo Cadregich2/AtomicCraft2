@@ -9,6 +9,11 @@ const router = createRouter({
             name: 'home'
         },
         {
+            path: '/login',
+            component: () => import('./components/Login.vue'),
+            name: 'login'
+        },
+        {
             path: '/test',
             component: () => import('./components/Test.vue'),
             name: 'test'
