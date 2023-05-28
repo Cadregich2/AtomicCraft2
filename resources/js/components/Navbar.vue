@@ -1,50 +1,32 @@
 <template>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="d-flex flex-wrap w-100 px-2">
-            <router-link to="/" class="navbar-brand">Example</router-link>
+        <div class="d-flex flex-wrap w-100 px-1 px-lg-4 px-md-2">
+            <router-link to="/" class="navbar-brand order-0">AtomicCraft</router-link>
 
             <ul class="navbar-nav">
-                <li class="nav-item">
-                    <router-link :to="{ name: 'test' }" class="nav-link active" aria-current="page">
-                        Test
-                    </router-link>
-                </li>
+
             </ul>
 
-            <div class="right-menu d-flex align-items-center py-2 py-lg-0">
-                    <div class="nav-item dropdown" v-if="auth">
-                        <a class="nav-link dropdown-toggle" href="#">
-                            Cadregich
-                        </a>
-                        <div class="d-flex flex-column align-items-start">
-                            <ul class="dropdown-menu dropdown-menu-end flex-column">
-                                <li>
-                                    <router-link to="/cabinet" class="text-decoration-none">
-                                        <button class="dropdown-item text-center">Кабинет</button>
-                                    </router-link>
-                                </li>
-                                <li>
-                                    <router-link to="/logout" class="text-decoration-none">
-                                        <button class="dropdown-item text-center">Выйти</button>
-                                    </router-link>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                <button class="navbar-toggler ml-auto" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-            </div>
-
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="collapse navbar-collapse order-2" id="navbarSupportedContent">
                 <ul class="navbar-nav mb-lg-0">
                     <li class="nav-item">
                         <router-link :to="{ name: 'test' }" class="nav-link active" aria-current="page">
-                            Test2
+                            Сервера
+                        </router-link>
+                    </li>
+                    <li class="nav-item">
+                        <router-link :to="{ name: 'test' }" class="nav-link active" aria-current="page">
+                            Магазин
+                        </router-link>
+                    </li>
+                    <li class="nav-item">
+                        <router-link :to="{ name: 'test' }" class="nav-link active" aria-current="page">
+                            Новости
+                        </router-link>
+                    </li>
+                    <li class="nav-item">
+                        <router-link :to="{ name: 'test' }" class="nav-link active" aria-current="page">
+                            Дискорд
                         </router-link>
                     </li>
                 </ul>
@@ -57,6 +39,40 @@
                     </li>
                 </ul>
             </div>
+
+            <div class="right-menu d-flex align-items-center order-lg-3 order-1 mb-auto ml-auto">
+                <div class="nav-item dropdown" v-if="auth">
+                    <ul class="navbar-nav mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link dropdown-toggle" href="#">
+                                Cadregich
+                            </a>
+                        </li>
+                    </ul>
+
+                    <div class="d-flex flex-column align-items-start">
+                        <ul class="dropdown-menu dropdown-menu-end flex-column">
+                            <li>
+                                <router-link to="/cabinet" class="text-decoration-none">
+                                    <button class="dropdown-item text-center">Кабинет</button>
+                                </router-link>
+                            </li>
+                            <li>
+                                <router-link to="/logout" class="text-decoration-none">
+                                    <button class="dropdown-item text-center">Выйти</button>
+                                </router-link>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <button class="navbar-toggler ml-auto" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+
         </div>
     </nav>
 </template>
@@ -92,10 +108,21 @@ export default {
 </script>
 
 <style scoped>
+.navbar {
+    border-bottom: solid 2px hotpink;
+}
+
+.navbar-brand {
+    font-size: 21px;
+    font-weight: 600;
+}
+
+.nav-item {
+    font-size: 19px;
+}
+
 .right-menu {
-    position: absolute;
-    top: 0;
-    right: 0;
+    margin-left: auto;
 }
 
 @media (min-width: 992px) {
@@ -105,11 +132,12 @@ export default {
 }
 
 .right-menu > * {
-    margin-right: 0.5rem;
+    margin-left: 0.8rem;
 }
 
-.navbar {
-    border-bottom: solid 2px hotpink;
+.dropdown-toggle:hover {
+    color: black;
+    transition: .2s;
 }
 
 .dropdown-menu {
