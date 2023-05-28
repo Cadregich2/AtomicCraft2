@@ -2,12 +2,13 @@
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="d-flex flex-wrap w-100 px-1 px-lg-4 px-md-2">
             <router-link to="/" class="navbar-brand order-0">AtomicCraft</router-link>
-
-            <ul class="navbar-nav">
+            <!-- Always visible left menu -->
+            <ul class="always-visible-left-menu navbar-nav">
 
             </ul>
-
-            <div class="collapse navbar-collapse order-2" id="navbarSupportedContent">
+            <!-- /.Always visible left menu -->
+            <!-- Left menu -->
+            <div class="left-menu collapse navbar-collapse order-2" id="navbarSupportedContent">
                 <ul class="navbar-nav mb-lg-0">
                     <li class="nav-item">
                         <router-link :to="{ name: 'test' }" class="nav-link active" aria-current="page">
@@ -39,17 +40,17 @@
                     </li>
                 </ul>
             </div>
-
+            <!-- /.Left menu -->
+            <!-- Right menu -->
             <div class="right-menu d-flex align-items-center order-lg-3 order-1 mb-auto ml-auto">
                 <div class="nav-item dropdown" v-if="auth">
                     <ul class="navbar-nav mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link dropdown-toggle" href="#">
+                            <div class="nav-link dropdown-toggle" href="#">
                                 Cadregich
-                            </a>
+                            </div>
                         </li>
                     </ul>
-
                     <div class="d-flex flex-column align-items-start">
                         <ul class="dropdown-menu dropdown-menu-end flex-column">
                             <li>
@@ -65,14 +66,15 @@
                         </ul>
                     </div>
                 </div>
-
+                <!-- Burger -->
                 <button class="navbar-toggler ml-auto" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+                <!-- /.Burger -->
             </div>
-
+            <!-- /.Right menu -->
         </div>
     </nav>
 </template>
@@ -91,6 +93,30 @@ export default {
         const element = document.getElementsByClassName('dropdown')[0];
         const elementMenu = document.getElementsByClassName('dropdown-menu')[0];
         const dropdown = new Dropdown(element);
+
+        function handleClick() {
+            dropdown.show();
+            elementMenu.style.display = 'flex';
+            element.removeEventListener('click', handleClick);
+
+            function resetClick() {
+                dropdown.hide();
+                elementMenu.style.display = 'none';
+                element.addEventListener('click', handleClick);
+            }
+
+            function handleClickOutside(event) {
+                if (!element.contains(event.target)) {
+                    resetClick();
+                }
+            }
+
+            element.addEventListener('click', resetClick);
+            document.addEventListener('click', handleClickOutside);
+        }
+
+        element.addEventListener('click', handleClick);
+
         element.addEventListener('mouseenter', function () {
             dropdown.show();
             elementMenu.style.display = 'flex';
