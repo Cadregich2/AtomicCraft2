@@ -161,8 +161,22 @@ export default {
 </script>
 
 <style scoped>
+* {
+    color: white !important;
+}
 .navbar {
     border-bottom: solid 2px hotpink;
+    background: url('/images/backgrounds/header_backgroun9d.png');
+}
+
+@media (min-width: 922px) {
+    .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1030;
+    }
 }
 
 .navbar-brand {
@@ -196,6 +210,9 @@ export default {
 .dropdown-menu {
     margin: 0;
     left: auto;
+}
+.dropdown-menu > * > * > * {
+    color: black !important;
 }
 
 #navbar-auth-block {
